@@ -1,0 +1,4 @@
+*.o
+aifm/fusion
+aifm_merge/fusion
+original/fusion

@@ -1,0 +1,31 @@
+pstart.cpp: In function ‘long int primal_start_artificial(arc_array_t&, network_t*)’:
+pstart.cpp:40:23: warning: converting to non-pointer type ‘uint64_t’ {aka ‘long unsigned int’} from NULL [-Wconversion-null]
+   40 |     root->basic_arc = NULL;
+      |                       ^~~~
+pstart.cpp:52:10: error: ‘arc’ was not declared in this scope; did you mean ‘arcs’?
+   52 |     for( arc = net->arcs; idx != stop; idx++ ) {
+      |          ^~~
+      |          arcs
+pstart.cpp:52:21: error: ‘network_t’ {aka ‘struct network’} has no member named ‘arcs’
+   52 |     for( arc = net->arcs; idx != stop; idx++ ) {
+      |                     ^~~~
+pstart.cpp:52:31: warning: comparison of integer expressions of different signedness: ‘int’ and ‘uint64_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+   52 |     for( arc = net->arcs; idx != stop; idx++ ) {
+      |                           ~~~~^~~~~~~
+pstart.cpp:54:16: error: redeclaration of ‘arc_t& arc’
+   54 |         arc_t &arc = arcs.at_mut(scope, idx);
+      |                ^~~
+pstart.cpp:52:10: note: ‘<typeprefixerror>arc’ previously declared here
+   52 |     for( arc = net->arcs; idx != stop; idx++ ) {
+      |          ^~~
+pstart.cpp:59:23: error: invalid conversion from ‘uint64_t’ {aka ‘long unsigned int’} to ‘arc_t*’ [-fpermissive]
+   59 |     arc_t *arc = net->dummy_arcs;
+      |                  ~~~~~^~~~~~~~~~
+      |                       |
+      |                       uint64_t {aka long unsigned int}
+pstart.cpp:62:27: error: invalid conversion from ‘arc_t*’ to ‘uint64_t’ {aka ‘long unsigned int’} [-fpermissive]
+   62 |         node->basic_arc = arc;
+      |                           ^~~
+      |                           |
+      |                           arc_t*
+make: *** [pstart.o] Error 1

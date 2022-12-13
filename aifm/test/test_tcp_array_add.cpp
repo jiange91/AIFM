@@ -17,8 +17,9 @@ extern "C" {
 using namespace far_memory;
 using namespace std;
 
-constexpr static uint64_t kCacheSize = (128ULL << 20);
-constexpr static uint64_t kFarMemSize = (4ULL << 30);
+constexpr static uint64_t kCacheMBs = 920;
+constexpr static uint64_t kCacheSize = (kCacheMBs << 20);
+constexpr static uint64_t kFarMemSize = (1024ULL << 20);
 constexpr static uint32_t kNumGCThreads = 12;
 constexpr static uint32_t kNumEntries =
     (8ULL << 20); // So the array size is larger than the local cache size.
@@ -63,9 +64,24 @@ void do_work(FarMemManager *manager) {
 
   gen_random_array(kNumEntries, raw_array_A);
   gen_random_array(kNumEntries, raw_array_B);
+  
+  auto t1 = std::chrono::steady_clock::now();
   copy_array(&array_A, raw_array_A);
+  auto t2 = std::chrono::steady_clock::now();
   copy_array(&array_B, raw_array_B);
+  auto t3 = std::chrono::steady_clock::now();
   add_array(&array_C, &array_A, &array_B);
+  auto t4 = std::chrono::steady_clock::now();
+  
+  std::cout << "copy: "
+    << std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count()
+    << " us" << std::endl;
+  std::cout << "copy: "
+    << std::chrono::duration_cast<std::chrono::microseconds>(t3 - t2).count()
+    << " us" << std::endl;
+  std::cout << "add: "
+    << std::chrono::duration_cast<std::chrono::microseconds>(t4 - t3).count()
+    << " us" << std::endl;
 
   for (uint64_t i = 0; i < kNumEntries; i++) {
     DerefScope scope;

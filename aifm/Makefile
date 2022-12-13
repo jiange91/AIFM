@@ -5,6 +5,25 @@ librt_libs = $(SHENANGO_PATH)/bindings/cc/librt++.a
 INC += -I$(SHENANGO_PATH)/bindings/cc -I$(SHENANGO_PATH)/ksched -Iinc \
        -IDataFrame/AIFM/include/
 
+
+# mcf_src = 429.mcf/aifm/mcf.cpp
+# mcf_obj = $(mcf_src:.cpp=.o)
+
+interleave_merge_src = interleave/ref_merge.cpp
+interleave_merge_obj = $(interleave_merge_src:.cpp=.o)
+
+original_interleave_src = interleave/original_ref.cpp
+original_interleave_obj = $(original_interleave_src:.cpp=.o)
+
+local_list_src = test/local_list.cpp
+local_list_obj = $(local_list_src:.cpp=.o)
+
+local_queue_src = test/local_queue.cpp
+local_queue_obj = $(local_queue_src:.cpp=.o)
+
+interleave_src = interleave/ref.cpp
+interleave_obj = $(interleave_src:.cpp=.o)
+
 test_pointer_noswap_src = test/test_pointer_noswap.cpp
 test_pointer_noswap_obj = $(test_pointer_noswap_src:.cpp=.o)
 
@@ -20,11 +39,17 @@ test_tcp_pointer_swap_obj = $(test_tcp_pointer_swap_src:.cpp=.o)
 test_pointer_concurrent_src = test/test_pointer_concurrent.cpp
 test_pointer_concurrent_obj = $(test_pointer_concurrent_src:.cpp=.o)
 
+local_array_add_src = test/local_array_add.cpp
+local_array_add_obj = $(local_array_add_src:.cpp=.o)
+
 test_array_add_src = test/test_array_add.cpp
 test_array_add_obj = $(test_array_add_src:.cpp=.o)
 
 test_array_add_rw_api_src = test/test_array_add_rw_api.cpp
 test_array_add_rw_api_obj = $(test_array_add_rw_api_src:.cpp=.o)
+
+test_tcp_array_add_merge_src = test/test_tcp_array_add_merge.cpp
+test_tcp_array_add_merge_obj = $(test_tcp_array_add_merge_src:.cpp=.o)
 
 test_tcp_array_add_src = test/test_tcp_array_add.cpp
 test_tcp_array_add_obj = $(test_tcp_array_add_src:.cpp=.o)
@@ -96,7 +121,9 @@ lib_src = $(wildcard src/*.cpp)
 lib_src := $(filter-out src/tcp_device_server.cpp,$(lib_src))
 lib_obj = $(lib_src:.cpp=.o)
 
-test_src = $(test_pointer_noswap_src) $(test_pointer_swap_src) $(test_pointer_concurrent_src)  \
+test_src =  $(local_list_src) $(local_queue_src) $(local_array_add_src) $(interleave_src) \
+$(interleave_merge_src) $(original_interleave_src) $(test_tcp_array_add_merge_src) \
+$(test_pointer_noswap_src) $(test_pointer_swap_src) $(test_pointer_concurrent_src)  \
 $(test_tcp_pointer_swap_src) $(test_array_add_src) $(test_array_nt_src) \
 $(test_array_clock_replacement_src) $(test_tcp_array_add_src) $(test_hopscotch_serial_src) \
 $(test_slab_src) $(test_local_hopscotch_serial) $(test_hopscotch_gc_serial_src) \
@@ -118,7 +145,9 @@ override CXXFLAGS += -std=gnu++2a -fconcepts -Wno-unused-function
 CXXFLAGS := $(filter-out -std=gnu++17,$(CXXFLAGS))
 override LDFLAGS += -lnuma
 
-all: bin/test_pointer_noswap bin/test_pointer_swap bin/test_pointer_concurrent bin/test_array_add bin/test_array_nt \
+all: bin/test_tcp_array_add_merge bin/interleave_merge \
+bin/local_list bin/local_queue  bin/local_array_add bin/interleave bin/original_interleave \
+bin/test_pointer_noswap bin/test_pointer_swap bin/test_pointer_concurrent bin/test_array_add bin/test_array_nt \
 bin/test_array_clock_replacement bin/tcp_device_server bin/tcp_device_server bin/test_tcp_pointer_swap \
 bin/test_tcp_array_add bin/test_hopscotch_serial bin/test_slab bin/test_local_hopscotch_serial \
 bin/test_hopscotch_gc_serial bin/test_hopscotch_parallel bin/test_hopscotch_gc_parallel \
@@ -126,6 +155,30 @@ bin/test_tcp_hopscotch_gc_serial bin/test_tcp_hopscotch_gc_parallel bin/test_has
 bin/test_local_skiplist_serial bin/test_local_list bin/test_list bin/test_list_gc bin/test_queue_gc bin/test_stack_gc \
 bin/test_pointer_swap_rw_api bin/test_array_add_rw_api bin/test_dataframe_vector bin/test_csv_reader \
 bin/test_shared_pointer bin/test_embedded_pointer libaifm.a
+
+bin/test_tcp_array_add_merge: $(test_tcp_array_add_merge_obj) $(librt_libs) $(RUNTIME_DEPS) $(lib_obj)
+	$(LDXX) -o $@ $(test_tcp_array_add_merge_obj) $(lib_obj) $(librt_libs) $(RUNTIME_LIBS) $(LDFLAGS)
+
+bin/local_list: $(local_list_obj) $(librt_libs) $(RUNTIME_DEPS) $(lib_obj)
+	$(LDXX) -o $@ $(local_list_obj) $(lib_obj) $(librt_libs) $(RUNTIME_LIBS) $(LDFLAGS)
+
+bin/local_queue: $(local_queue_obj) $(librt_libs) $(RUNTIME_DEPS) $(lib_obj)
+	$(LDXX) -o $@ $(local_queue_obj) $(lib_obj) $(librt_libs) $(RUNTIME_LIBS) $(LDFLAGS)
+
+bin/local_array_add: $(local_array_add_obj) $(librt_libs) $(RUNTIME_DEPS) $(lib_obj)
+	$(LDXX) -o $@ $(local_array_add_obj) $(lib_obj) $(librt_libs) $(RUNTIME_LIBS) $(LDFLAGS)
+
+bin/interleave: $(interleave_obj) $(librt_libs) $(RUNTIME_DEPS) $(lib_obj)
+	$(LDXX) -o $@ $(interleave_obj) $(lib_obj) $(librt_libs) $(RUNTIME_LIBS) $(LDFLAGS)
+
+# bin/mcf: $(mcf_obj) $(librt_libs) $(RUNTIME_DEPS) $(lib_obj)
+# 	$(LDXX) -o $@ $(mcf_obj) $(lib_obj) $(librt_libs) $(RUNTIME_LIBS) $(LDFLAGS)
+
+bin/interleave_merge: $(interleave_merge_obj) $(librt_libs) $(RUNTIME_DEPS) $(lib_obj)
+	$(LDXX) -o $@ $(interleave_merge_obj) $(lib_obj) $(librt_libs) $(RUNTIME_LIBS) $(LDFLAGS)
+
+bin/original_interleave: $(original_interleave_obj) $(librt_libs) $(RUNTIME_DEPS) $(lib_obj)
+	$(LDXX) -o $@ $(original_interleave_obj) $(lib_obj) $(librt_libs) $(RUNTIME_LIBS) $(LDFLAGS)
 
 bin/test_pointer_noswap: $(test_pointer_noswap_obj) $(librt_libs) $(RUNTIME_DEPS) $(lib_obj)
 	$(LDXX) -o $@ $(test_pointer_noswap_obj) $(lib_obj) $(librt_libs) $(RUNTIME_LIBS) $(LDFLAGS)

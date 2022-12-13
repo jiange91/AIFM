@@ -1,0 +1,5 @@
+logs
+original/mcf
+original/obj
+*.o
+aifm/mcf

@@ -123,6 +123,7 @@ protected:
   friend class FarMemManager;
   template <typename InduceFn, typename InferFn, typename MappingFn>
   friend class Prefetcher;
+  friend class MissCalculator;
 
   void init(uint64_t object_addr);
   void _free();

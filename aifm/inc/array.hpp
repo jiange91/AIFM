@@ -60,6 +60,7 @@ private:
 
   friend class FarMemManager;
   friend class FarMemTest;
+  friend class MissCalculator;
 
   Array(FarMemManager *manager);
   NOT_COPYABLE(Array);

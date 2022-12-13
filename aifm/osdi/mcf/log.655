@@ -1,0 +1,65 @@
+sizeof: 64 104
+CPU 07| <5> cpu: detected 20 cores, 1 nodes
+CPU 07| <5> time: detected 2394 ticks / us
+[  0.000655] CPU 07| <5> loading configuration from '/mnt/AIFM/aifm/configs/client_noht.config'
+[  0.000703] CPU 07| <3> < 1 guaranteed kthreads is not recommended for networked apps
+[  0.018724] CPU 07| <5> net: started network stack
+[  0.018742] CPU 07| <5> net: using the following configuration:
+[  0.018747] CPU 07| <5>   addr:	18.18.1.2
+[  0.018752] CPU 07| <5>   netmask:	255.255.255.0
+[  0.018757] CPU 07| <5>   gateway:	18.8.1.1
+[  0.018761] CPU 07| <5>   mac:	6A:BA:D3:A6:C8:E8
+[  0.138368] CPU 07| <2> mlx5_init: Couldn't get context for mlx5_3 (errno 9)
+[  0.250414] CPU 07| <5> thread: created thread 0
+[  0.250540] CPU 07| <5> spawning 9 kthreads
+[  0.250680] CPU 08| <5> thread: created thread 1
+[  0.250761] CPU 12| <5> thread: created thread 2
+[  0.250850] CPU 01| <5> thread: created thread 3
+[  0.251015] CPU 13| <5> thread: created thread 4
+[  0.251195] CPU 04| <5> thread: created thread 5
+[  0.251398] CPU 05| <5> thread: created thread 6
+[  0.251543] CPU 06| <5> thread: created thread 7
+[  0.251739] CPU 17| <5> thread: created thread 8
+
+MCF SPEC CPU2006 version 1.10
+Copyright (c) 1998-2000 Zuse Institut Berlin (ZIB)
+Copyright (c) 2000-2002 Andreas Loebel & ZIB
+Copyright (c) 2003-2005 Andreas Loebel
+
+nodes                      : 13225
+active arcs                : 204416
+basis dual infeasible
+simplex iterations         : 117627
+objective value            : 8870158808
+new implicit arcs          : 3000000
+active arcs                : 3204416
+basis dual infeasible
+simplex iterations         : 238162
+objective value            : 6930124240
+erased arcs                : 2992893
+new implicit arcs          : 5330399
+active arcs                : 5541922
+basis dual infeasible
+simplex iterations         : 333107
+objective value            : 6930121656
+erased arcs                : 5327571
+new implicit arcs          : 27187
+active arcs                : 241538
+basis dual infeasible
+simplex iterations         : 333437
+objective value            : 6930121650
+erased arcs                : 27182
+new implicit arcs          : 272998
+active arcs                : 487354
+basis dual infeasible
+simplex iterations         : 334353
+objective value            : 6930121646
+erased arcs                : 272992
+new implicit arcs          : 308
+active arcs                : 214670
+basis dual infeasible
+simplex iterations         : 334402
+objective value            : 6930121644
+checksum                   : 19565010
+Time: 45437084
+[ 47.769435] CPU 01| <5> init: shutting down -> SUCCESS

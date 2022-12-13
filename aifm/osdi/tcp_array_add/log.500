@@ -1,0 +1,26 @@
+CPU 12| <5> cpu: detected 20 cores, 1 nodes
+CPU 12| <5> time: detected 2394 ticks / us
+[  0.000708] CPU 12| <5> loading configuration from '/mnt/AIFM/aifm/configs/client_noht.config'
+[  0.000784] CPU 12| <3> < 1 guaranteed kthreads is not recommended for networked apps
+[  0.017371] CPU 12| <5> net: started network stack
+[  0.017404] CPU 12| <5> net: using the following configuration:
+[  0.017412] CPU 12| <5>   addr:	18.18.1.2
+[  0.017420] CPU 12| <5>   netmask:	255.255.255.0
+[  0.017427] CPU 12| <5>   gateway:	18.8.1.1
+[  0.017435] CPU 12| <5>   mac:	06:52:51:5D:12:F2
+[  0.137221] CPU 12| <2> mlx5_init: Couldn't get context for mlx5_3 (errno 9)
+[  0.253026] CPU 12| <5> thread: created thread 0
+[  0.253172] CPU 12| <5> spawning 9 kthreads
+[  0.253328] CPU 07| <5> thread: created thread 1
+[  0.253403] CPU 11| <5> thread: created thread 2
+[  0.253458] CPU 09| <5> thread: created thread 3
+[  0.253556] CPU 07| <5> thread: created thread 4
+[  0.253901] CPU 07| <5> thread: created thread 5
+[  0.254088] CPU 06| <5> thread: created thread 6
+[  0.254135] CPU 11| <5> thread: created thread 7
+[  0.254215] CPU 02| <5> thread: created thread 8
+copy: 8013779 us
+copy: 7794607 us
+add: 26180751 us
+Passed
+[ 60.083750] CPU 09| <5> init: shutting down -> SUCCESS

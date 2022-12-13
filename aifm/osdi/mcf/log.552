@@ -1,0 +1,33 @@
+sizeof: 64 104
+CPU 02| <5> cpu: detected 20 cores, 1 nodes
+CPU 02| <5> time: detected 2394 ticks / us
+[  0.000692] CPU 02| <5> loading configuration from '/mnt/AIFM/aifm/configs/client_noht.config'
+[  0.000749] CPU 02| <3> < 1 guaranteed kthreads is not recommended for networked apps
+[  0.017363] CPU 02| <5> net: started network stack
+[  0.017392] CPU 02| <5> net: using the following configuration:
+[  0.017399] CPU 02| <5>   addr:	18.18.1.2
+[  0.017407] CPU 02| <5>   netmask:	255.255.255.0
+[  0.017413] CPU 02| <5>   gateway:	18.8.1.1
+[  0.017420] CPU 02| <5>   mac:	E6:31:BC:8E:25:C4
+[  0.136232] CPU 02| <2> mlx5_init: Couldn't get context for mlx5_3 (errno 9)
+[  0.254196] CPU 02| <5> thread: created thread 0
+[  0.254338] CPU 02| <5> spawning 9 kthreads
+[  0.254496] CPU 14| <5> thread: created thread 1
+[  0.254532] CPU 03| <5> thread: created thread 2
+[  0.254635] CPU 06| <5> thread: created thread 3
+[  0.254907] CPU 17| <5> thread: created thread 4
+[  0.255037] CPU 09| <5> thread: created thread 5
+[  0.255255] CPU 11| <5> thread: created thread 6
+[  0.255453] CPU 07| <5> thread: created thread 7
+[  0.255640] CPU 12| <5> thread: created thread 8
+
+MCF SPEC CPU2006 version 1.10
+Copyright (c) 1998-2000 Zuse Institut Berlin (ZIB)
+Copyright (c) 2000-2002 Andreas Loebel & ZIB
+Copyright (c) 2003-2005 Andreas Loebel
+
+nodes                      : 13225
+active arcs                : 204416
+basis dual infeasible
+simplex iterations         : 117627
+objective value            : 8870158808
